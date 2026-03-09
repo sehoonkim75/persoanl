@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>채용 트렌드 주간 보고서 | 2026 Vol.10</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── 기본 변수 ── */
+  :root {
+    --ink:           #0f0e0d;
+    --cream:         #f5f2ec;
+    --warm-white:    #faf8f4;
+    --accent:        #c8421a;
+    --accent-light:  #f4d5c9;
+    --muted:         #7a7570;
+    --divider:       #d9d4cc;
+    --green:         #1a3a2a;
+    --green-light:   #d4e8dc;
+    --blue-dark:     #1a2540;
+
+    /* 맑은고딕 계열 – 한글 시스템 폰트 우선 */
+    --font-body: "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    --font-mono: "DM Mono", "Consolas", "Courier New", monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.75;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 52px 36px 88px;
+  }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    border-top: 4px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 20px 0 16px;
+    margin-bottom: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .masthead-left .vol {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .masthead-left .title {
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+  }
+  .masthead-right { text-align: right; }
+  .masthead-right .date {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .masthead-right .recipient { font-size: 13px; color: var(--muted); }
+
+  /* ─── HERO BAND ─── */
+  .hero-band {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 28px 32px;
+    margin-bottom: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-band::before {
+    content: '채용';
+    position: absolute;
+    right: -10px; top: -20px;
+    font-size: 120px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .hero-band .label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .hero-band .headline {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .hero-band .subheadline {
+    font-size: 13px;
+    color: rgba(245,242,236,0.75);
+    line-height: 1.7;
+  }
+
+  /* ─── STATS ROW ─── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--divider);
+    border: 1px solid var(--divider);
+    margin-bottom: 40px;
+  }
+  .stat-box {
+    background: var(--warm-white);
+    padding: 14px 12px 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .stat-box .num {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-box .desc {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.45;
+    word-break: keep-all;
+  }
+
+  /* ─── SECTION ─── */
+  .section { margin-bottom: 52px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 2px 8px;
+    letter-spacing: 1px;
+  }
+  .section-title { font-size: 18px; font-weight: 700; }
+  .section-icon { margin-left: auto; font-size: 18px; }
+
+  /* ─── CARDS ─── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .card {
+    background: var(--warm-white);
+    border: 1px solid var(--divider);
+    border-left: 3px solid var(--accent);
+    padding: 16px 18px;
+  }
+  .card.green { border-left-color: var(--green); }
+  .card .card-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .card .card-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 7px;
+    line-height: 1.4;
+  }
+  .card .card-body { font-size: 13px; color: #3d3a35; line-height: 1.7; }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight-box {
+    background: var(--green);
+    color: var(--warm-white);
+    padding: 22px 26px;
+    margin-bottom: 16px;
+  }
+  .highlight-box .hb-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--green-light);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .highlight-box .hb-text { font-size: 13.5px; line-height: 1.75; }
+
+  /* ─── TREND LIST ─── */
+  .trend-list { list-style: none; }
+  .trend-list li {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 14px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--divider);
+    align-items: flex-start;
+  }
+  .trend-list li:last-child { border-bottom: none; }
+  .trend-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding: 4px 6px;
+    line-height: 1.4;
+    text-align: center;
+    word-break: keep-all;
+    white-space: nowrap;
+    align-self: flex-start;
+    margin-top: 2px;
+    height: fit-content;
+  }
+  .trend-content { min-width: 0; }
+  .trend-content .trend-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    line-height: 1.45;
+    word-break: keep-all;
+  }
+  .trend-content .trend-body {
+    font-size: 12.5px;
+    color: #3d3a35;
+    line-height: 1.72;
+    word-break: keep-all;
+  }
+
+  /* ─── BAR CHART ─── */
+  .bar-chart { margin: 14px 0; }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 11px;
+  }
+  .bar-label { font-size: 12px; color: var(--muted); min-width: 100px; text-align: right; }
+  .bar-track {
+    flex: 1;
+    background: var(--divider);
+    height: 8px;
+    overflow: hidden;
+  }
+  .bar-fill { height: 100%; background: var(--accent); }
+  .bar-fill.green { background: var(--green); }
+  .bar-pct {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink);
+    min-width: 44px;
+  }
+
+  /* ─── KEYWORD CHIPS ─── */
+  .keyword-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+  .chip {
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 12px;
+    padding: 4px 12px;
+    letter-spacing: 0.3px;
+  }
+  .chip.outline {
+    background: transparent;
+    border: 1px solid var(--ink);
+    color: var(--ink);
+  }
+
+  /* ─── TWO-COL ─── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+  /* ─── CALLOUT ─── */
+  .callout {
+    border: 1px solid var(--accent);
+    background: var(--accent-light);
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .callout p { font-size: 13px; line-height: 1.7; }
+  .callout strong { color: var(--accent); }
+
+  /* ─── DIVIDER TEXT ─── */
+  .divider-text {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .divider-text::before, .divider-text::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--divider);
+  }
+  .divider-text span {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ─── SOURCE BOX (출처) ─── */
+  .source-box {
+    margin-top: 20px;
+    padding: 14px 18px;
+    background: #f0ede7;
+    border-top: 2px solid var(--divider);
+  }
+  .source-box .source-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .source-list { list-style: none; }
+  .source-list li {
+    font-size: 11.5px;
+    color: #555;
+    line-height: 1.6;
+    padding: 2px 0;
+    padding-left: 14px;
+    position: relative;
+  }
+  .source-list li::before {
+    content: '↗';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 10px;
+    top: 3px;
+  }
+  .source-list a {
+    color: #555;
+    text-decoration: none;
+    border-bottom: 1px dotted #aaa;
+  }
+  .source-list a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ─── BLUE DARK BOX (AI섹션) ─── */
+  .blue-box {
+    background: var(--blue-dark);
+    color: var(--warm-white);
+    padding: 22px 26px;
+    margin-bottom: 16px;
+  }
+  .blue-box .hb-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #7eb8ff;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .blue-box .hb-text { font-size: 13.5px; line-height: 1.75; }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    margin-top: 60px;
+    padding-top: 18px;
+    border-top: 2px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer .footer-brand { font-size: 15px; font-weight: 700; }
+  .footer .footer-meta {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 620px) {
+    body { padding: 24px 16px 60px; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .card-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .masthead { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .masthead-right { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ MASTHEAD ══ -->
+<div class="masthead">
+  <div class="masthead-left">
+    <div class="vol">채용 트렌드 리포트 · Vol.10 · 2026</div>
+    <div class="title">채용 트렌드<br>주간 보고서</div>
+  </div>
+  <div class="masthead-right">
+    <span class="date">2026.03.05 (목)</span>
+    <span class="recipient">수신: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2b58434042466b435e464e5f054844054059">[email&#160;protected]</a></span>
+  </div>
+</div>
+
+<!-- ══ HERO ══ -->
+<div class="hero-band">
+  <div class="label">이번 주 핵심 메시지</div>
+  <div class="headline">"채용 한파 해빙 — 대기업·반도체 중심 회복세,<br>AI 인재·4~7년차 경력직이 2026 채용의 중심축"</div>
+  <div class="subheadline">기업 73.4%가 대졸 신입 채용 계획을 확정했으며, 4~7년차 경력직과 AI 활용 인재에 대한 수요가 두드러집니다. 전 세계적으로는 채용 담당자의 93%가 AI 활용 확대를 계획하는 가운데, '인간+AI 협업' 모델이 채용의 핵심 방정식으로 자리잡고 있습니다.</div>
+</div>
+
+<!-- ══ STATS ══ -->
+<div class="stats-row">
+  <div class="stat-box">
+    <div class="num">73.4%</div>
+    <div class="desc">대졸 신입 채용 계획 확정 기업</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">49.7%</div>
+    <div class="desc">4~7년차 중간 경력직 집중 채용</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">93%</div>
+    <div class="desc">채용 담당자의 AI 활용 증가 계획</div>
+  </div>
+  <div class="stat-box">
+    <div class="num">84.4%</div>
+    <div class="desc">채용 활발 업종 전자·반도체</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION 01 : 국내 채용 트렌드
+══════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">국내 채용 트렌드</span>
+    <span class="section-icon">🇰🇷</span>
+  </div>
+
+  <div class="highlight-box">
+    <div class="hb-label">Overview</div>
+    <div class="hb-text">
+      2026년 국내 채용 시장은 뚜렷한 해빙 무드입니다. 인크루트가 873개 기업을 조사한 결과 <strong>73.4%</strong>가 대졸 신입 채용 계획을 확정했으며, 이는 전년 대비 7.9%p 증가한 수치입니다. 특히 대기업(87.3%)과 중견기업(81.1%)의 회복세가 두드러지고, 전자·반도체 업종이 84.4%로 가장 활발한 채용을 예고했습니다. 수시·상시 채용이 정착되는 가운데 직무 중심 실무형 인재와 AI 활용 역량을 갖춘 4~7년차 경력직에 수요가 집중되고 있습니다.
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-tag">채용 규모</div>
+      <div class="card-title">대기업·반도체 중심의 강한 회복</div>
+      <div class="card-body">전체 기업의 73.4%가 채용 계획 확정(전년比 +7.9%p). 대기업 87.3%(+33.3%p), 중견기업 81.1%(+14.7%p)로 규모 클수록 회복 폭이 큼. 전자·반도체(84.4%)가 업종 1위, 건설·토목(83.3%), IT·정보통신·게임(80.5%)이 뒤를 이음. 세 자릿수 채용 계획 대기업이 7.8%로 전년 0%에서 반등.</div>
+    </div>
+    <div class="card">
+      <div class="card-tag">채용 방식</div>
+      <div class="card-title">수시 채용 70.8%, 정기공채 시대 종언</div>
+      <div class="card-body">수시 채용만 실시하는 기업이 70.8%, '특정 시기 없이 인력 수요 발생 시' 채용한다는 응답이 85.8%에 달해 상·하반기 공채 개념이 빠르게 흐려지고 있음. 신규채용 시 가장 중요한 평가요소로 기업의 81.6%가 '직무 관련 업무 경험'을 꼽았으며, 이 비중은 2023년 이후 꾸준히 상승 중.</div>
+    </div>
+    <div class="card green">
+      <div class="card-tag">집중 채용 연차</div>
+      <div class="card-title">4~7년차 '골든존' 전성시대</div>
+      <div class="card-body">원티드랩 조사에서 가장 집중 채용할 연차 1위는 4~7년차(49.7%). 이어 1~3년차(19.6%), 8~11년차(17.6%), 신입(12.4%), 12~15년차(0.7%) 순. 즉시 성과를 낼 수 있는 중간 경력직이 절반을 차지하며 신입 수요는 상대적으로 위축.</div>
+    </div>
+    <div class="card green">
+      <div class="card-tag">2026 인재상</div>
+      <div class="card-title">직무 역량 + AI 리터러시 이중 필수화</div>
+      <div class="card-body">2026년 인재상 1위 직무 전문 역량(64.7%), 2위 팀워크·협업(37.9%), 3위 조직 기여 의지(28.1%), 4위 AI·데이터 활용 역량(24.2%). 직무와 무관하게 AI 리터러시가 필수 요건으로 자리잡는 흐름이 데이터로 확인됨. 채용 어려움 1위는 '지원자 부족(42.5%)', 2위 '우수 인재 경쟁 심화(37.9%)'.</div>
+    </div>
+  </div>
+
+  <div class="divider-text"><span>집중 채용 직군 비중 (원티드랩, 2025.12)</span></div>
+
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">개발</div>
+      <div class="bar-track"><div class="bar-fill" style="width:56%"></div></div>
+      <div class="bar-pct">28.1%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">영업·제휴</div>
+      <div class="bar-track"><div class="bar-fill" style="width:40%"></div></div>
+      <div class="bar-pct">20.3%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">마케팅·홍보</div>
+      <div class="bar-track"><div class="bar-fill" style="width:31%"></div></div>
+      <div class="bar-pct">15.7%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">연구개발·생산</div>
+      <div class="bar-track"><div class="bar-fill" style="width:14%"></div></div>
+      <div class="bar-pct">각 7.2%</div>
+    </div>
+  </div>
+
+  <!-- 출처 -->
+  <div class="source-box">
+    <div class="source-label">데이터 출처</div>
+    <ul class="source-list">
+      <li><a href="https://www.ebn.co.kr/news/articleView.html?idxno=1699128" target="_blank">인크루트 「2026년 국내 기업 채용계획 조사」 (873개 기업 대상, 2026.02.10)</a></li>
+      <li><a href="https://www.getnews.co.kr/news/articleView.html?idxno=861651" target="_blank">인크루트 「2026 업종별 채용계획」 — 전자·반도체 84.4% (2026.02.19)</a></li>
+      <li><a href="https://zdnet.co.kr/view/?no=20251208160526" target="_blank">원티드랩 「2026 채용 트렌드 서베이」 (153개 기업 HR담당자, 2025.12.08) — ZDNet Korea</a></li>
+      <li><a href="https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000193378" target="_blank">한국경영자총협회 「2025년 신규채용 실태조사」 (100인↑ 기업 500개사) — KDI 경제교육정보센터</a></li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION 02 : 직군별 채용 동향
+══════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">직군별 채용 동향</span>
+    <span class="section-icon">📊</span>
+  </div>
+
+  <ul class="trend-list">
+    <li>
+      <div class="trend-num">IT·개발</div>
+      <div class="trend-content">
+        <div class="trend-title">AI·데이터 직군 급등, 직무 깊이 요구 강화</div>
+        <div class="trend-body">잡코리아 2026 HR 로드맵 'SMART ROAD' 조사(채용담당자 385명)에서 역량 중심(Skill-based Hiring)이 1순위 키워드로 꼽혔으며, 특히 AI 채용솔루션(AI Recruitment Solutions)이 핵심 트렌드로 부상. IT·정보통신·게임 업종의 채용 확정률은 80.5%로 3위. 스타트업 투자 단계가 높을수록 AI·데이터 직군 비율이 증가하는 패턴이 확인됨. AI와 협업하는 '하이브리드 개발자' 프로필 수요 증가.</div>
+      </div>
+    </li>
+    <li>
+      <div class="trend-num">영업·마케팅</div>
+      <div class="trend-content">
+        <div class="trend-title">비즈니스 직군 꾸준한 2~3위 수요 유지</div>
+        <div class="trend-body">원티드랩 서베이에서 영업·제휴(20.3%), 마케팅·홍보(15.7%)가 개발에 이어 2·3위를 유지. 잡코리아 조사에서 '협업·소통 능력을 갖춘 인재'에 대한 선호도가 62%로 전문성(63%)과 동등한 수준. 데이터 분석 능력과 AI 툴 활용 역량을 갖춘 퍼포먼스 마케터 수요가 두드러짐.</div>
+      </div>
+    </li>
+    <li>
+      <div class="trend-num">제조·기술</div>
+      <div class="trend-content">
+        <div class="trend-title">신규 채용 시급 직무 1·2위 — 제조·기술이 주도</div>
+        <div class="trend-body">경총 실태조사에서 신규채용이 시급한 직무로 '제조·기술·기능(26.0%)'과 '생산관리(25.8%)'가 1·2위. 전자·반도체 업종이 채용 확정률 1위(84.4%)를 기록해 반도체 슈퍼사이클의 영향이 채용 시장에 고스란히 반영됨. ICT·R&D도 22.2%로 뒤를 이음.</div>
+      </div>
+    </li>
+    <li>
+      <div class="trend-num">신입·Z세대</div>
+      <div class="trend-content">
+        <div class="trend-title">경력 선호 심화 — 신입 공고 2.6% 불과</div>
+        <div class="trend-body">대한상공회의소 조사(2025 상반기)에서 순수 신입 채용 기업은 전체의 2.6%에 불과. 경력 채용만 원하는 기업이 82.0%로 압도적. 한편 Z세대 사이에서는 '의도적 언보싱(Conscious Unbossing)'—관리직 승진을 거부하고 워라밸을 우선시하는 흐름—이 확산되며 리더십 파이프라인 구축이 과제로 부상.</div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="keyword-row">
+    <span class="chip">스킬 기반 채용</span>
+    <span class="chip">직무 중심</span>
+    <span class="chip">AI 리터러시</span>
+    <span class="chip">인재 밀도</span>
+    <span class="chip outline">수시 채용</span>
+    <span class="chip outline">경력 선호</span>
+    <span class="chip outline">팀핏(Team Fit)</span>
+    <span class="chip outline">의도적 언보싱</span>
+  </div>
+
+  <!-- 출처 -->
+  <div class="source-box">
+    <div class="source-label">데이터 출처</div>
+    <ul class="source-list">
+      <li><a href="https://m.view.nate.com/economy/view/341388/" target="_blank">잡코리아 「2025 채용 트렌드 결산 키워드 'SMART ROAD'」 (채용담당자 385명, 2025.12.08)</a></li>
+      <li><a href="https://zdnet.co.kr/view/?no=20251208160526" target="_blank">원티드랩 「2026 채용 트렌드 서베이」 (2025.12.08) — ZDNet Korea</a></li>
+      <li><a href="https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000196027" target="_blank">대한상공회의소 「2025년 상반기 채용시장 특징과 시사점」 — KDI 경제교육정보센터</a></li>
+      <li><a href="https://eiec.kdi.re.kr/policy/domesticView.do?ac=0000193378" target="_blank">경총 「2025년 신규채용 실태조사」 (ICT·R&D·제조 직무 시급도 포함) — KDI 경제교육정보센터</a></li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION 03 : 글로벌 채용 트렌드
+══════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title">글로벌 채용 트렌드</span>
+    <span class="section-icon">🌐</span>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="card" style="margin-bottom:14px;">
+        <div class="card-tag">고용 시장 온도</div>
+        <div class="card-title">선진국 채용 20~35% 하락, 신흥시장은 성장</div>
+        <div class="card-body">LinkedIn의 2026년 1월 보고에 따르면 선진국 고용은 팬데믹 이전 대비 20~35% 낮은 수준이나, 인도(+40%), UAE(+37%)는 강세. AI가 채용 둔화의 원인이 아니라 경제 불확실성·금리 정책이 주요 원인임을 LinkedIn이 데이터로 확인. 동시에 AI는 AI 엔지니어·데이터 어노테이터 등 130만 개 이상의 신규 직종을 창출.</div>
+      </div>
+      <div class="card green">
+        <div class="card-tag">스킬 기반 채용</div>
+        <div class="card-title">학위 대신 실증 스킬 — 학력 요건 포기 가속</div>
+        <div class="card-body">LinkedIn 데이터 기준 2024년 유료 채용 공고의 26%가 학위 요건을 제거(2020년 22% 대비 상승). 기술 기반 검색에 집중하는 채용 담당자는 적합 후보 채용 가능성이 12% 높음. AI 엔지니어가 LinkedIn에서 3년간 가장 빠르게 성장한 직종 중 하나로 부상.</div>
+      </div>
+    </div>
+    <div>
+      <div class="bar-chart" style="background:var(--warm-white); border:1px solid var(--divider); padding:18px;">
+        <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:2px; color:var(--muted); margin-bottom:14px; text-transform:uppercase;">글로벌 채용 핵심 지표</div>
+        <div class="bar-row">
+          <div class="bar-label" style="min-width:130px; font-size:11px;">AI 활용 증가 계획</div>
+          <div class="bar-track"><div class="bar-fill" style="width:93%"></div></div>
+          <div class="bar-pct">93%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label" style="min-width:130px; font-size:11px;">AI 채용 확대 인식</div>
+          <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+          <div class="bar-pct">80%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label" style="min-width:130px; font-size:11px;">글로벌 임원 채용 계획</div>
+          <div class="bar-track"><div class="bar-fill green" style="width:80%"></div></div>
+          <div class="bar-pct">약 80%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label" style="min-width:130px; font-size:11px;">HR 내 AI 업무 활용</div>
+          <div class="bar-track"><div class="bar-fill green" style="width:43%"></div></div>
+          <div class="bar-pct">43%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label" style="min-width:130px; font-size:11px;">구직자 취업 준비 부족감</div>
+          <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+          <div class="bar-pct">80%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:16px;">
+    <p><strong>규제 주목</strong> — EU AI Act의 범용 AI 관련 의무가 2026년 8월부터 적용됩니다. 뉴욕시 Local Law 144처럼 자동화 채용 의사결정 도구 사용 시 연간 편향 감사·후보자 사전 고지가 요구되는 규제가 글로벌 표준으로 확산 중(MSH/Reuters 인용). 국내 HR 부서도 선제 대응이 필요합니다.</p>
+  </div>
+
+  <!-- 출처 -->
+  <div class="source-box">
+    <div class="source-label">데이터 출처</div>
+    <ul class="source-list">
+      <li><a href="https://www.weforum.org/stories/2026/01/ai-has-already-added-1-3-million-new-jobs-according-to-linkedin-data/" target="_blank">LinkedIn × World Economic Forum 「AI has already added 1.3 million jobs」 (2026.01)</a></li>
+      <li><a href="https://www.cnbc.com/2026/01/11/ai-dominate-hiring-2026-linkedin-execs-top-tips-stand-out.html" target="_blank">LinkedIn Global Research (19,000명 조사) — CNBC Make It (2026.01.11) — "93% of recruiters plan to increase AI use"</a></li>
+      <li><a href="https://business.linkedin.com/talent-solutions/global-talent-trends" target="_blank">LinkedIn Global Talent Trends — "About 8 out of 10 global executives plan to hire"</a></li>
+      <li><a href="https://wavecnct.com/blogs/news/linkedin-statistics" target="_blank">Wave Connect 「LinkedIn Statistics 2026 Q1」 — 스킬 기반 채용·학위 요건 제거 데이터</a></li>
+      <li><a href="https://www.talentmsh.com/insights/ai-in-recruitment" target="_blank">MSH 「AI Recruitment Trends & Statistics 2026」 — EU AI Act·NYC Local Law 144·SHRM·Gartner 인용</a></li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     SECTION 04 : AI·기술 트렌드
+══════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <span class="section-title">AI·기술 트렌드가 채용에 미치는 영향</span>
+    <span class="section-icon">🤖</span>
+  </div>
+
+  <div class="blue-box">
+    <div class="hb-label">2026 채용 AX 핵심 메시지</div>
+    <div class="hb-text">
+      AI는 채용 공고 작성·지원자 소싱·서류 평가·일정 조율 등 전 과정에 통합됐습니다. HR 내 AI 업무 활용이 2024년 26% → 2026년 43%로 급증했습니다(SHRM). 그러나 AI가 공정하게 평가한다고 신뢰하는 지원자는 <strong style="color:#7eb8ff;">26%</strong>에 불과하고, AI로 채용 결정을 내리면 지원을 꺼린다는 미국 성인이 상당수입니다(Gartner). '인간+AI 협업'이 2026 채용의 최적 방정식입니다.
+    </div>
+  </div>
+
+  <ul class="trend-list">
+    <li>
+      <div class="trend-num" style="background:#1a3a8a;">단순 활용</div>
+      <div class="trend-content">
+        <div class="trend-title">현재 대부분의 기업 — 반복 업무 자동화 집중</div>
+        <div class="trend-body">채용 공고 작성·지원자 안내 메일·일정 조율 등 텍스트 생성·반복 작업에 AI 활용. 잡코리아 조사에서 채용담당자 4명 중 1명(26%)이 이미 AI 기반 채용 서비스를 활용 중이며, 이 중 40%는 AI로 인재를 추천받고 서류 평가에 AI를 쓰는 비중도 26%에 달함. 채용 예산 동결·삭감 기업이 79%에 달해 '효율'이 최대 과제.</div>
+      </div>
+    </li>
+    <li>
+      <div class="trend-num" style="background:var(--accent);">정밀 검증</div>
+      <div class="trend-content">
+        <div class="trend-title">선도 기업 전환 중 — 품질·다양성 개선 효과 입증</div>
+        <div class="trend-body">AI 보조 채용 메시지를 활용하는 기업은 우수 인재 채용 가능성이 9% 높음(LinkedIn). 목표 설정 후 AI 채용 툴을 활용한 기업은 다양성 채용 효과 최대 48% 개선, 채용 비용 30~40% 절감이 보고됨(IQTalent 2026). AI가 '숨겨진 인재(hidden gem)'를 발굴한다는 채용 담당자가 60%.</div>
+      </div>
+    </li>
+    <li>
+      <div class="trend-num" style="background:var(--green); white-space:normal; text-align:center; line-height:1.35;">예측<br>인텔리전스</div>
+      <div class="trend-content">
+        <div class="trend-title">미래 목표 — 성과·이직 예측으로 채용 정밀도 극대화</div>
+        <div class="trend-body">축적 데이터 기반 합격 가능성 및 장기 성과 예측, AI 에이전트의 자율 소싱·스크리닝. 2026년 말까지 자율 AI 에이전트를 팀에 추가 계획 중인 TA 리더가 절반 이상. Deloitte 「2026 Global Human Capital Trends」는 AI 성공의 열쇠가 기술 자체가 아닌 '인간 팀의 이해와 협업'에 있다고 강조. LinkedIn 기준 스킬 기반 검색 채용 담당자는 적합 후보 채용 가능성 12% 상승.</div>
+      </div>
+    </li>
+  </ul>
+
+  <div class="callout">
+    <p><strong>핵심 리스크</strong> — AI 채용의 주요 우려 사항: 알고리즘 편향(Gartner), 독특한 인재 간과, 지원자의 AI 조작. 지원자의 74%는 AI가 채용 결정에 관여할 경우 결과를 신뢰하지 않는다는 조사도 있음. 투명한 AI 사용 고지와 인간 검토 단계 병행이 필수이며, EU AI Act 8월 의무화를 앞두고 컴플라이언스 준비가 시급합니다.</p>
+  </div>
+
+  <!-- 출처 -->
+  <div class="source-box">
+    <div class="source-label">데이터 출처</div>
+    <ul class="source-list">
+      <li><a href="https://m.view.nate.com/economy/view/341388/" target="_blank">잡코리아 「2025 채용 트렌드 결산」 — AI 기반 서비스 활용 현황(담당자 26%, 인재 추천 40%, 예산 동결 79%)</a></li>
+      <li><a href="https://www.talentmsh.com/insights/ai-in-recruitment" target="_blank">MSH 「AI Recruitment Trends & Statistics 2026」 — SHRM(HR 내 AI 43%), LinkedIn(+9% 채용 품질), IQTalent(다양성 +48%, 비용 절감 30~40%)</a></li>
+      <li><a href="https://business.linkedin.com/talent-solutions/resources/future-of-recruiting" target="_blank">LinkedIn 「Future of Recruiting 2025」 — AI 보조 메시징·스킬 기반 검색 효과</a></li>
+      <li><a href="https://wavecnct.com/blogs/news/linkedin-statistics" target="_blank">Wave Connect 「LinkedIn Statistics 2026 Q1」 — AI가 숨겨진 인재 발굴(60% 응답)</a></li>
+      <li>Deloitte 「2026 Global Human Capital Trends」 — AI 성공의 핵심은 인간 협업</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- ══ FOOTER ══ -->
+<div class="footer">
+  <div class="footer-brand">채용 트렌드 주간 보고서</div>
+  <div class="footer-m
