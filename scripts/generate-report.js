@@ -510,6 +510,11 @@ async function main() {
   const searchData = await withRetry(() => collectSearchData(), "웹검색");
   console.log("");
 
+  // 토큰 분당 한도 초과 방지 — 65초 대기
+  console.log("⏸  Rate limit 방지 대기 중 (65초)...");
+  await sleep(65000);
+  console.log("   ✅ 대기 완료\n");
+
   // Step 2A: 전반부 JSON
   console.log("📋 Step 2A: 전반부 JSON 생성 (meta·stats·s01~02)...");
   const textA = await withRetry(() =>
@@ -525,6 +530,11 @@ async function main() {
     "전반부 JSON"
   );
   console.log(`   ✅ 전반부 완료 (${textA.length}자)`);
+
+  // 전반부·후반부 사이 대기
+  console.log("⏸  Rate limit 방지 대기 중 (65초)...");
+  await sleep(65000);
+  console.log("   ✅ 대기 완료\n");
 
   // Step 2B: 후반부 JSON
   console.log("📋 Step 2B: 후반부 JSON 생성 (s03~05·총평)...");
