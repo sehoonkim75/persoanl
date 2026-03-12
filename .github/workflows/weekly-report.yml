@@ -1,0 +1,44 @@
+name: 📊 주간 채용 트렌드 보고서 자동 생성
+
+on:
+  # 매주 목요일 오전 9시 (KST) = UTC 00:00
+  schedule:
+    - cron: '0 0 * * 4'
+
+  # GitHub에서 수동으로도 실행 가능
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 저장소 체크아웃
+      - name: 📥 저장소 가져오기
+        uses: actions/checkout@v4
+
+      # 2. Node.js 설정
+      - name: ⚙️ Node.js 설정
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3. 패키지 설치
+      - name: 📦 패키지 설치
+        run: npm install @anthropic-ai/sdk
+
+      # 4. 보고서 생성 스크립트 실행
+      - name: 🤖 보고서 생성
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/generate-report.js
+
+      # 5. 변경사항 커밋 & 푸시
+      - name: 📤 GitHub에 업로드
+        run: |
+          git config user.name "HR Report Bot"
+          git config user.email "bot@github.com"
+          git add index.html
+          # 변경사항이 있을 때만 커밋
+          git diff --staged --quiet || git commit -m "📊 자동 생성: $(date +'%Y년 %m월 %d일') 채용 트렌드 보고서"
+          git push
